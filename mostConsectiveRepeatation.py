@@ -9,17 +9,19 @@
 
 def longest_repetition(li):
     # Your code here
-    max = -1
+    max_count = -1
     count = 0
     number = None
     for i in range(len(li)-1):
         if li[i] == li[i+1]:
             count = count + 1
         else:
-            if count > max:
-                max = count
+            if count > max_count:
+                max_count = count
                 number = li[i]
             count = 0
+    if count > 0:
+        number = li[0]
     return number
 
 
@@ -34,5 +36,5 @@ print (longest_repetition(['a', 'b', 'b', 'b', 'c', 'd', 'd', 'd']))
 print (longest_repetition([1,2,3,4,5]))
 # 1
 
-print (longest_repetition([]))
+print (longest_repetition([4, 4, 4, 4, 4]))
 # None

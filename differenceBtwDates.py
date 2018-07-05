@@ -4,40 +4,22 @@
 #
 # Assume that the birthday and current date are correct dates.
 #
-from datetime import  date
 
-
-def is_leap(year):
-    if (year % 4) == 0:
-        if (year % 100) == 0:
-            if (year % 400) == 0:
-                return True
-            else:
-                return False
-        else:
-            return True
-    else:
-        return False
+from math import floor
 
 
 def daysBetweenDates(year1, month1, day1, year2, month2, day2):
-    #d1 = date(year2, month2, day2)
-    #d2 = date(year1, month1, day1)
-    #return (d1 - d2).days
-    if is_leap(year1):
-        day1 += 1
-    if is_leap(year2):
-        day2 += 1
-    if day2 < day1:
-        day2 += 30
-        month2 -= 1
-    days = day2 - day1
-    if month2 < month1:
+    if month2 in [1, 2]:
         month2 += 12
         year2 -= 1
-    days += (month2 - month1) * 30
-    days += (year2 - year1) * 365
+    if month1 in [1, 2]:
+        month1 += 12
+        year1 -= 1
+    days2 = 365 * year2 + floor(year2/4) - floor(year2/100) + floor(year2/400) + day2 + floor((153*month2+8)/5)
+    days1 = 365 * year1 + floor(year1/4) - floor(year1/100) + floor(year1/400) + day1 + floor((153*month1+8)/5)
+    days = days2 - days1
     return days
+
 # Test routine
 
 

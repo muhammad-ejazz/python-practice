@@ -26,14 +26,19 @@ ada_family = { 'Judith Blunt-Lytton': ['Anne Isabella Blunt', 'Wilfrid Scawen Bl
 # person (this should be the empty list if there are none). The order of the list
 # does not matter and duplicates will be ignored.
 
-def ancestors(genealogy, person, lst = []):
+def ancestors(genealogy, person):
     # your code here
+    ancestors_list = []
     if genealogy.__contains__(person):
-        lst.append(genealogy[person][0])
-        lst.append(genealogy[person][1])
-        ancestors(genealogy, genealogy[person][0], lst)
-        ancestors(genealogy, genealogy[person][1], lst)
-        return lst
+        ancestors_list.append(genealogy[person][0])
+        ancestors_list.append(genealogy[person][1])
+        result1 = ancestors(genealogy, genealogy[person][0])
+        result2 = ancestors(genealogy, genealogy[person][1])
+        if result1:
+            ancestors_list.extend(result1)
+        if result2:
+            ancestors_list.extend(result2)
+        return ancestors_list
     else:
         return []
 # Here are some examples:

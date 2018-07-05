@@ -14,12 +14,11 @@ def is_list(p):
 
 def deep_reverse(p):
     result = []
-    for elem in p:
+    for elem in reversed(p):
         if is_list(elem):
             result.append(deep_reverse(elem))
         else:
             result.append(elem)
-    result.reverse()
     return result
 
 #For example,

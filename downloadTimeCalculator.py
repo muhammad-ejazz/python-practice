@@ -30,42 +30,20 @@ sizeDict = {'kb':2**10, 'kB':2**10*8, 'Mb': 2**20, 'MB':2**20*8, 'Gb': 2**30, 'G
 def convert_seconds(number):
     number1 = int(number)
     decimal = round(number - number1, 10)
-    hour = int(number1 / 3600)
-    number1 = number1 - (hour * 3600)
-    minute = int(number1 / 60)
-    number1 = number1 - (minute * 60)
+    hour, number1 = divmod(number1, 3600)
+    minute, number1 = divmod(number1, 60)
     second = number1 + decimal
     if hour == 1:
         if minute == 1:
-            if second == 1:
-                string = "{} hour, {} minute, {} second".format(hour, minute, second)
-            elif second == 0:
-                string = "{} hour, {} minute".format(hour, minute)
-            else:
-                string = "{} hour, {} minute, {} seconds".format(hour, minute, second)
+            string = "{} hour, {} minute, {} seconds".format(hour, minute, second)
         else:
-            if second == 1:
-                string = "{} hour, {} minutes, {} second".format(hour, minute, second)
-            elif second == 0:
-                string = "{} hour, {} minutes".format(hour, minute)
-            else:
-                string = "{} hour, {} minutes, {} seconds".format(hour, minute, second)
+            string = "{} hour, {} minutes, {} seconds".format(hour, minute, second)
     else:
         if minute == 1:
-            if second == 1:
-                string = "{} hours, {} minute, {} second".format(hour, minute, second)
-            elif second == 0:
-                string = "{} hours, {} minute".format(hour, minute)
-            else:
-                string = "{} hours, {} minute, {} seconds".format(hour, minute, second)
+            string = "{} hours, {} minute, {} seconds".format(hour, minute, second)
         else:
-            if second == 1:
-                string = "{} hours, {} minutes, {} second".format(hour, minute, second)
-            elif second == 0:
-                string = "{} hours, {} minutes".format(hour, minute)
-            else:
-                string = "{} hours, {} minutes, {} seconds".format(hour, minute, second)
-    return  string
+            string = "{} hours, {} minutes, {} seconds".format(hour, minute, second)
+    return string
 
 
 def download_time(filesize, fileUnit, BandWidth, BandWiddthUnit):

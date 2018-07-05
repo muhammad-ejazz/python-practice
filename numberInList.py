@@ -19,13 +19,13 @@ def numbers_in_lists(string):
         if number >= number1:
             lst1.append(number1)
         else:
-            if len(lst1) > 0:
+            if lst1:
                 lst.append(lst1)
             lst.append(number1)
             number = number1
             lst1 = []
         if i == len(string)-1:
-            if len(lst1) > 0:
+            if lst1:
                 lst.append(lst1)
     return lst
 # testcases

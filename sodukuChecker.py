@@ -111,7 +111,6 @@ def check_sudoku(matrix):
             sec_sum += matrix1[i][j]
         if sec_sum != main_sum:
             return False
-
     return True
 
 print (check_sudoku(incorrect))

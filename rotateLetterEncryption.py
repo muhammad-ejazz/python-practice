@@ -5,19 +5,15 @@
 # choose to as long as rotate returns the correct string.
 # Note that n can be positive, negative or zero.
 import string
-characters = string.ascii_lowercase
-strings = []
-for i in range(len(characters)):
-    strings.append(characters[i])
-
+characters = list(string.ascii_lowercase)
 
 def rotate(string, number):
     new_str = ''
     for ind in range(len(string)):
         if string[ind] != ' ':
-            i = strings.index(string[ind])
+            i = characters.index(string[ind])
             i = (i + number) % 26
-            new_str += strings[i]
+            new_str += characters[i]
         else:
             new_str += string[ind]
     return new_str

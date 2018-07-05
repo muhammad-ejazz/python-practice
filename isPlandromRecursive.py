@@ -8,12 +8,10 @@
 def is_palindrome(s):
     if s == '':
         return  True
-    if s[0] != s[len(s)-1]:
+    if s[0] != s[-1]:
         return False
-    if s[0] == s[len(s)-1]:
-        new_str = ''
-        for i in range(1, len(s)-1):
-            new_str += s[i]
+    if s[0] == s[-1]:
+        new_str = s[1:len(s)-1]
         return is_palindrome(new_str)
 
 print (is_palindrome(''))

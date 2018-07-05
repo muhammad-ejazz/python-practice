@@ -19,10 +19,11 @@ def is_list(p):
 # It is not necessary to understand how is_list works. It returns True if the
 # input is a List, and returns False otherwise.
 
-def deep_count(p, count = 0):
+def deep_count(p):
+    count = 0
     if is_list(p):
-        for el in p:
-             count = 1 + deep_count(el, count)
+        for element in p:
+            count += 1 + deep_count(element)
         return count
     else:
         return count

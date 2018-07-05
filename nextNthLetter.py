@@ -3,16 +3,13 @@
 # alphabet after it. Note that 'a' follows 'z', and that n can be positive,
 #negative or zero.
 import string
-characters = string.ascii_lowercase
-strings = []
-for i in range(len(characters)):
-    strings.append(characters[i])
+characters = list(string.ascii_lowercase)
 
 def shift_n_letters(letter, n):
     # Your code here
-    i = strings.index(letter)
+    i = characters.index(letter)
     i = (i + n) % 26
-    return strings[i]
+    return characters[i]
 
 print (shift_n_letters('s', 1))
 #>>> t
