@@ -9,13 +9,13 @@ characters = list(string.ascii_lowercase)
 
 def rotate(string, number):
     new_str = ''
-    for ind in range(len(string)):
-        if string[ind] != ' ':
-            i = characters.index(string[ind])
+    for ch in string:
+        if ch != ' ':
+            i = characters.index(ch)
             i = (i + number) % 26
             new_str += characters[i]
         else:
-            new_str += string[ind]
+            new_str += ch
     return new_str
 
 print (rotate ('sarah', 13))

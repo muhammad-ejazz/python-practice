@@ -59,20 +59,16 @@ matrix6 = [[1, 1.5, 3], [3, 1, 1.5], [1.5, 3, 1]]
 
 
 def maxi(matrix):
-    maximum = matrix[0][0]
-    for i in range(len(matrix)):
-        for j in range(len(matrix[i])):
-            if matrix[i][j] > maximum:
-                maximum = matrix[i][j]
+    maximum = float('-inf')
+    for row in matrix:
+        maximum = max(maximum, max(row))
     return maximum
 
 
 def mini(matrix):
-    minimum = matrix[0][0]
-    for i in range(len(matrix)):
-        for j in range(len(matrix[i])):
-            if matrix[i][j] < minimum:
-                minimum = matrix[i][j]
+    minimum = float('inf')
+    for row in matrix:
+        minimum = min(minimum, min(row))
     return minimum
 
 
@@ -82,9 +78,9 @@ def check_sudoku(matrix):
     for i in range(len(matrix)):
         line1 = []
         for j in range(len(matrix[i])):
-            if str.isalpha(str(matrix[i][j])):
+            if not str.isdigit(str(matrix[i][j])):
                 return False
-            if float.is_integer(float(matrix[i][j])) == False:
+            if not float.is_integer(float(matrix[i][j])):
                 return False
             line1.append(matrix[j][i])
         matrix1.append(line1)
@@ -92,25 +88,22 @@ def check_sudoku(matrix):
     maximum = maxi(matrix)
     minimum = mini(matrix)
     numbers = range(minimum, maximum+1)
-    main_sum = 0
 
-    for elem in numbers:
-        main_sum += elem
+    for row in matrix:
+        counter_dictionary = {number: 0 for number in numbers}
+        for value in row:
+            counter_dictionary[value] += 1
+        for count in counter_dictionary.values():
+            if count == 0 or count > 1:
+                return False
 
-
-    for i in range(len(matrix)):
-        sec_sum  = 0
-        for j in range(len(matrix[i])):
-            sec_sum += matrix[i][j]
-        if sec_sum != main_sum:
-            return False
-
-    for i in range(len(matrix1)):
-        sec_sum = 0
-        for j in range(len(matrix1[i])):
-            sec_sum += matrix1[i][j]
-        if sec_sum != main_sum:
-            return False
+    for row in matrix1:
+        counter_dictionary = {number: 0 for number in numbers}
+        for value in row:
+            counter_dictionary[value] += 1
+        for count in counter_dictionary.values():
+            if count == 0 or count > 1:
+                return False
     return True
 
 print (check_sudoku(incorrect))
