@@ -29,15 +29,16 @@ ada_family = { 'Judith Blunt-Lytton': ['Anne Isabella Blunt', 'Wilfrid Scawen Bl
 def ancestors(genealogy, person):
     # your code here
     ancestors_list = []
-    if genealogy.__contains__(person):
-        ancestors_list.append(genealogy[person][0])
-        ancestors_list.append(genealogy[person][1])
-        result1 = ancestors(genealogy, genealogy[person][0])
-        result2 = ancestors(genealogy, genealogy[person][1])
-        if result1:
-            ancestors_list.extend(result1)
-        if result2:
-            ancestors_list.extend(result2)
+    if person in genealogy:
+        father, mother = genealogy[person]
+        ancestors_list.append(father)
+        ancestors_list.append(mother)
+        paternal_ancestors = ancestors(genealogy, genealogy[person][0])
+        maternal_ancestors = ancestors(genealogy, genealogy[person][1])
+        if paternal_ancestors:
+            ancestors_list.extend(paternal_ancestors)
+        if maternal_ancestors:
+            ancestors_list.extend(maternal_ancestors)
         return ancestors_list
     else:
         return []
