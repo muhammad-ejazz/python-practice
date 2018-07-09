@@ -68,16 +68,15 @@ def courses_offered(courses, hexamester):
 def involved(courses, person):
     # Your Code here
     finalDict = {}
-    for key in courses:
+    for hexamester in courses:
         lst = []
-        for key1 in courses[key]:
-            for key2 in courses[key][key1]:
-                if courses[key][key1][key2] == person:
-                    lst.append(key1)
-        if len(lst) > 0:
-            finalDict[key] = lst
+        for course in courses[hexamester]:
+            for property in courses[hexamester][course]:
+                if courses[hexamester][course][property] == person:
+                    lst.append(course)
+        if lst:
+            finalDict[hexamester] = lst
     return finalDict
-
 
 
 # For example:

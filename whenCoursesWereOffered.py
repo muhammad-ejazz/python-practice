@@ -60,12 +60,12 @@ def courses_offered(courses, hexamester):
 # representing the hexamesters when the input course is offered.
 
 def when_offered(courses,course):
-   # Your code here
-   lst = []
-   for key in courses:
-       if courses[key].__contains__(course):
-           lst.append(key)
-   return lst
+    # Your code here
+    lst = []
+    for hexamester in courses.keys():
+        if course in courses[hexamester]:
+            lst.append(hexamester)
+    return lst
 
 
 
